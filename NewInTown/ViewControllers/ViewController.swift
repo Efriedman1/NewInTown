@@ -24,13 +24,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //categories()
         //sendBusinessRequest()
-        sendCategoryRequest()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func getBiz(sender : UIButton) {
+       // created a button that calls this so taht u dont have to rerun the app evrytime to get a call and work w the json, just set break points in the bizrequest function at the print line to work w it and tap button everytime to execute
+        sendBusinessRequest()
     }
 
 

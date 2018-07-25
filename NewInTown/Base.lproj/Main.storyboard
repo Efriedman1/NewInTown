@@ -24,9 +24,8 @@
                                     <constraint firstAttribute="height" constant="128" id="t1Q-6u-bhk"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2cg-xT-FZ7">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2cg-xT-FZ7">
                                 <rect key="frame" x="145" y="322" width="85.5" height="182.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Category 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="146-C9-4i7">
                                         <rect key="frame" x="1.5" y="0.0" width="82.5" height="20.5"/>
@@ -89,8 +88,21 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n26-db-WpH">
+                                <rect key="frame" x="164" y="551" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="getBizWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bg4-DA-41h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n26-db-WpH" firstAttribute="centerX" secondItem="f6u-0l-vDv" secondAttribute="centerX" id="2jg-eJ-6Tq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n26-db-WpH" secondAttribute="bottom" constant="86" id="HzV-8a-IHX"/>
+                            <constraint firstItem="n26-db-WpH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k1u-ZX-yfT"/>
+                            <constraint firstItem="n26-db-WpH" firstAttribute="top" secondItem="2cg-xT-FZ7" secondAttribute="bottom" constant="46" id="mk8-DU-r4J"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>

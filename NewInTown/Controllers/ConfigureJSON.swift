@@ -26,7 +26,7 @@ func sendCategoryRequest() {
         .validate(statusCode: 200..<300)
         .responseJSON { response in
             if (response.result.error == nil) {
-                debugPrint("HTTP Response Body: \(response.data)")
+                print(response.result)
             }
             else {
                 debugPrint("HTTP Request failed: \(response.result.error)")
@@ -60,7 +60,13 @@ func sendBusinessRequest() {
         .validate(statusCode: 200..<300)
         .responseJSON { response in
             if (response.result.error == nil) {
-                debugPrint("HTTP Response Body: \(response.data)")
+                //retrieve data as JSON, check first to make sure there is data being retrieved
+                if let value = response.result.value {
+                    //this is ur json to work w.
+                    let jsonData = JSON(value)
+                    print(jsonData.dictionaryValue)
+                }
+                
             }
             else {
                 debugPrint("HTTP Request failed: \(response.result.error)")
