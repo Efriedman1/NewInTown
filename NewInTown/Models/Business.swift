@@ -18,11 +18,11 @@ struct BusinessModel {
     var rating: Double
     
     init(json: JSON) {
-        self.name = json["Root"]["businesses"][0]["name"].stringValue
-        self.location = json["Root"]["businesses"][0]["location"]["address1"].stringValue
-        self.price = json["Root"]["businesses"][0]["price"].stringValue
-        self.isClosed = json["Root"]["businesses"][0]["is_closed"].boolValue
+        self.name = json["businesses"][0]["name"].stringValue
+        self.location = json["businesses"][0]["location"]["address1"].stringValue
+        self.price = json["businesses"][0]["price"].stringValue
+        self.isClosed = json["businesses"][0]["is_closed"].boolValue
         //self.sortBy = json["Root"]["businesses"][0]["name"].stringValue
-        self.rating = json["Root"]["businesses"][0]["rating"].doubleValue
+        self.rating = json["businesses"][0]["rating"].doubleValue
     }
 }

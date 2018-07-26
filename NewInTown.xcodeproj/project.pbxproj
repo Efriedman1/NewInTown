@@ -15,7 +15,6 @@
 		079404DC2108F47F00C3893F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 079404DA2108F47F00C3893F /* LaunchScreen.storyboard */; };
 		079404E72108F47F00C3893F /* NewInTownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079404E62108F47F00C3893F /* NewInTownTests.swift */; };
 		079404F22108F47F00C3893F /* NewInTownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079404F12108F47F00C3893F /* NewInTownUITests.swift */; };
-		07F76F7E210908F4006DF8B9 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F7D210908F4006DF8B9 /* Categories.swift */; };
 		07F76F80210908FF006DF8B9 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F7F210908FF006DF8B9 /* Business.swift */; };
 		07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F8421091174006DF8B9 /* ConfigureJSON.swift */; };
 		2A8A411578EB9ACE9AF5DE57 /* Pods_NewInTown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BD92FC596EF17FB617A69E /* Pods_NewInTown.framework */; };
@@ -55,7 +54,6 @@
 		079404ED2108F47F00C3893F /* NewInTownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewInTownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		079404F12108F47F00C3893F /* NewInTownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInTownUITests.swift; sourceTree = "<group>"; };
 		079404F32108F47F00C3893F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07F76F7D210908F4006DF8B9 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		07F76F7F210908FF006DF8B9 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		07F76F8421091174006DF8B9 /* ConfigureJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureJSON.swift; sourceTree = "<group>"; };
 		082CCD39026D800C7D454D1B /* Pods_NewInTownTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewInTownTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,7 +154,6 @@
 		07F76F7C210908DF006DF8B9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				07F76F7D210908F4006DF8B9 /* Categories.swift */,
 				07F76F7F210908FF006DF8B9 /* Business.swift */,
 			);
 			path = Models;
@@ -414,7 +411,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				079404D12108F47E00C3893F /* ViewController.swift in Sources */,
-				07F76F7E210908F4006DF8B9 /* Categories.swift in Sources */,
 				079404D72108F47E00C3893F /* NewInTown.xcdatamodeld in Sources */,
 				07F76F80210908FF006DF8B9 /* Business.swift in Sources */,
 				07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */,
@@ -593,7 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96QE7H4LVL;
+				DEVELOPMENT_TEAM = PT53JXM7XM;
 				INFOPLIST_FILE = NewInTown/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -612,7 +608,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 96QE7H4LVL;
+				DEVELOPMENT_TEAM = PT53JXM7XM;
 				INFOPLIST_FILE = NewInTown/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

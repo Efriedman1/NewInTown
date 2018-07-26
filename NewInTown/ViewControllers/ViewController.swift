@@ -9,23 +9,38 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-class ViewController: UIViewController {
 
-    //let json = JSON(data: dataFromNetworking)
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var CategoryLabels: [UIStackView]!
-    @IBOutlet weak var categoryOne: UILabel!
-    @IBOutlet weak var categoryTwo: UILabel!
-    @IBOutlet weak var categoryThree: UILabel!
-    @IBOutlet weak var categoryFour: UILabel!
-    @IBOutlet weak var categoryFive: UILabel!
+    let categories = ["Food", "Entertainment", "Gyms", "Coffee Shops", "Museums"]
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        return cell
+    }
+    
+    
+    @IBOutlet weak var table: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //categories()
-        //sendBusinessRequest()
-
+        sendCategoryRequest()
+        
+        table.dataSource = self
+        table.delegate = self
+        table.reloadData()
+    
     }
+    func categoryParams(){
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,12 +51,5 @@ class ViewController: UIViewController {
        // created a button that calls this so taht u dont have to rerun the app evrytime to get a call and work w the json, just set break points in the bizrequest function at the print line to work w it and tap button everytime to execute
         sendBusinessRequest()
     }
-
-
-
-//    func getBusiness(){
-//        let basedURL = "https://api.yelp.com/v3/businesses/search"
-//        let url = URL(string: basedURL)
-//    }
 }
 

@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
+
 func sendCategoryRequest() {
     /**
      Category
@@ -27,9 +28,16 @@ func sendCategoryRequest() {
         .responseJSON { response in
             if (response.result.error == nil) {
                 print(response.result)
-            }
-            else {
-                debugPrint("HTTP Request failed: \(response.result.error)")
+                //retrieve data as JSON, check first to make sure there is data being retrieved
+                if let value = response.result.value {
+                    //this is the json data
+                    let jsonCategoryData = JSON(value)
+                    let configure = CategoriesModel.init(json: jsonCategoryData)
+                    print(CategoriesModel.init(json: jsonCategoryData))
+                }
+                else {
+                    debugPrint("HTTP Request failed: \(response.result.error)")
+                }
             }
     }
 }
@@ -63,18 +71,19 @@ func sendBusinessRequest() {
                 //retrieve data as JSON, check first to make sure there is data being retrieved
                 if let value = response.result.value {
                     //this is ur json to work w.
-                    let jsonData = JSON(value)
-                    print(jsonData.dictionaryValue)
+                    let jsonBusinessData = JSON(value)
+                    print(BusinessModel.init(json: jsonBusinessData))
                 }
                 
             }
             else {
                 debugPrint("HTTP Request failed: \(response.result.error)")
             }
+            
     }
 }
 
 func businesses(){
     
-}
+    }
 
