@@ -11,18 +11,22 @@ import SwiftyJSON
 
 struct BusinessModel {
     var name: String
-    var location: String
+    var address: String
+    var rating: Double
+    var distance: String
     var price: String
     var isClosed: Bool
     //var sortBy: String
-    var rating: Double
+    
     
     init(json: JSON) {
-        self.name = json["businesses"][0]["name"].stringValue
-        self.location = json["businesses"][0]["location"]["address1"].stringValue
-        self.price = json["businesses"][0]["price"].stringValue
-        self.isClosed = json["businesses"][0]["is_closed"].boolValue
+        self.name = json["name"].stringValue
+        self.address = json["location"]["address1"].stringValue
+        self.rating = json["rating"].doubleValue
+        self.distance = json["distance"].stringValue
+        self.price = json["price"].stringValue
+        self.isClosed = json["is_closed"].boolValue
         //self.sortBy = json["Root"]["businesses"][0]["name"].stringValue
-        self.rating = json["businesses"][0]["rating"].doubleValue
+    
     }
 }

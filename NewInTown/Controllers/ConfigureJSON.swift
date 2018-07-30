@@ -36,9 +36,9 @@ func sendCategoryRequest() {
                     print(CategoriesModel.init(json: jsonCategoryData))
                 }
                 else {
-                    debugPrint("HTTP Request failed: \(response.result.error)")
-                }
+                     debugPrint("HTTP Request failed: \(response.result.error)")
             }
+        }
     }
 }
 
@@ -46,11 +46,13 @@ func categories(){
     
 }
 
-func sendBusinessRequest() {
+func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
     /**
      Business
      get https://api.yelp.com/v3/businesses/search
      */
+    
+    var businesses = [BusinessModel]()
     
     // Add Headers
     let headers = [
@@ -60,7 +62,7 @@ func sendBusinessRequest() {
     // Add URL parameters
     let urlParams = [
         "term":"food",
-        "location":"94102",
+        "location":"94102"
         ]
     
     // Fetch Request
@@ -72,14 +74,18 @@ func sendBusinessRequest() {
                 if let value = response.result.value {
                     //this is ur json to work w.
                     let jsonBusinessData = JSON(value)
-                    print(BusinessModel.init(json: jsonBusinessData))
+                    let json = jsonBusinessData["businesses"].arrayValue
+                    for business in json {
+                       businesses.append(BusinessModel.init(json: business))
+                    }
+                    //print(businesses)
                 }
-                
+                completion(businesses)
             }
             else {
                 debugPrint("HTTP Request failed: \(response.result.error)")
-            }
-            
+                completion([])
+        }
     }
 }
 
