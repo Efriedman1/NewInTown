@@ -11,40 +11,7 @@ import SwiftyJSON
 import Alamofire
 
 
-func sendCategoryRequest() {
-    /**
-     Category
-     get https://api.yelp.com/v3/categories
-     */
-    
-    // Add Headers
-    let headers = [
-        "Authorization":"Bearer CTfczk-bwFjYUwc90qlTyhITFvb4ZVic5RIdthiQ2CbUqsFXZ4mVuql3L6RqjGMf1wlVR1c03gtCLPksOVGgv8B8IsmfcGUKApj9LLlXXGIrCTqZLIOlpfQsF8VYW3Yx",
-        ]
-    
-    // Fetch Request
-    Alamofire.request("https://api.yelp.com/v3/categories", method: .get, headers: headers)
-        .validate(statusCode: 200..<300)
-        .responseJSON { response in
-            if (response.result.error == nil) {
-                print(response.result)
-                //retrieve data as JSON, check first to make sure there is data being retrieved
-                if let value = response.result.value {
-                    //this is the json data
-                    let jsonCategoryData = JSON(value)
-                    let configure = CategoriesModel.init(json: jsonCategoryData)
-                    print(CategoriesModel.init(json: jsonCategoryData))
-                }
-                else {
-                     debugPrint("HTTP Request failed: \(response.result.error)")
-            }
-        }
-    }
-}
 
-func categories(){
-    
-}
 
 func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
     /**
@@ -61,7 +28,7 @@ func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
     
     // Add URL parameters
     let urlParams = [
-        "term":"food",
+        "term":"restaurant",
         "location":"94102"
         ]
     
@@ -72,7 +39,7 @@ func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
             if (response.result.error == nil) {
                 //retrieve data as JSON, check first to make sure there is data being retrieved
                 if let value = response.result.value {
-                    //this is ur json to work w.
+                    
                     let jsonBusinessData = JSON(value)
                     let json = jsonBusinessData["businesses"].arrayValue
                     for business in json {
@@ -88,8 +55,4 @@ func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
         }
     }
 }
-
-func businesses(){
-    
-    }
 

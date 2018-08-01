@@ -16,6 +16,7 @@ protocol BusinessTableViewCellDelegate: class {
 class BusinessTableViewCell: UITableViewCell {
     
     weak var delegate: BusinessTableViewCellDelegate?
+    //create function to download image from url
     
     @IBOutlet weak var businessImage: UIImageView!
     @IBOutlet weak var rating: UILabel!
@@ -24,7 +25,12 @@ class BusinessTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var address: UILabel!
     
-    
+    var business: BusinessModel! {
+        didSet {
+            name.text = business.name
+            //businessImage
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }

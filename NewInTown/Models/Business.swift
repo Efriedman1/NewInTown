@@ -16,6 +16,7 @@ struct BusinessModel {
     var distance: String
     var price: String
     var isClosed: Bool
+    var imageUrl: String
     //var sortBy: String
     
     
@@ -26,6 +27,7 @@ struct BusinessModel {
         self.distance = json["distance"].stringValue
         self.price = json["price"].stringValue
         self.isClosed = json["is_closed"].boolValue
+        self.imageUrl = json["image_url"].stringValue
         //self.sortBy = json["Root"]["businesses"][0]["name"].stringValue
     
     }
