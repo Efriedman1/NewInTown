@@ -13,9 +13,6 @@ import SwiftyJSON
 import MapKit
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var latitude: CLLocationDegrees = 0.0
-    var longitude: CLLocationDegrees = 0.0
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIButton!
@@ -23,29 +20,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     
-    @IBAction func backButtonTapped(_ sender: UIButton) {
-         performSegue(withIdentifier: "unwindToVC1", sender: self)
-    }
-    
-    @IBAction func mapsButtonTapped(_ sender: UIButton) {
-        
-//        let latitude: CLLocationDegrees = 39.2342
-//        let longitude: CLLocationDegrees = -120.234534
-        let regionDistance: CLLocationDistance = 1000;
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, latitude, longitude)
-        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
-        let placemark = MKPlacemark(coordinate: coordinates)
-        let mapItem = MKMapItem(placemark: placemark)
-        
-        mapItem.name = "placeholder"
-        mapItem.openInMaps(launchOptions: options)
-    }
+    @IBOutlet weak var generateNewListBttn: UIButton!
+    var latitude: CLLocationDegrees = 0.0
+    var longitude: CLLocationDegrees = 0.0
+    var mapLabel = String()
+    var cImage = UIImage()
+    var cLabel = String()
     
     var businessesFetched: [BusinessModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        generateNewListBttn.layer.cornerRadius = 10
+        categoryImage.image = cImage
+        categoryLabel.text = cLabel
         mapsButton.layer.cornerRadius = 10
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -53,6 +41,22 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let businessesFetched = businessesFetched {
             print(businessesFetched)
         }
+    }
+    
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+         performSegue(withIdentifier: "unwindToVC1", sender: self)
+    }
+    
+    @IBAction func mapsButtonTapped(_ sender: UIButton) {
+        let regionDistance: CLLocationDistance = 1000;
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, latitude, longitude)
+        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
+        let placemark = MKPlacemark(coordinate: coordinates)
+        let mapItem = MKMapItem(placemark: placemark)
+        
+        mapItem.name = mapLabel
+        mapItem.openInMaps(launchOptions: options)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,13 +73,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.address.text = business.address
         cell.price.text = business.price
         cell.reviews.text = "\(business.reviews) Reviews"
-        
-        //currentCell.textLabel?.text
-        latitude = business.latitude
-        longitude = business.longitude
-        
-        //cell.distance.text = business.distance
-        
         
         //set star rating
                 if business.rating < 1 {
@@ -109,9 +106,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let business = businessesFetched?[indexPath.row] else {return}
         let currentCell = tableView.cellForRow(at: indexPath) as! BusinessTableViewCell
-         //currentCell.textLabel?.text
-        //latitude = currentCell
+        latitude = business.latitude
+        longitude = business.longitude
+        mapLabel = business.name
+        print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
     }
     
 }

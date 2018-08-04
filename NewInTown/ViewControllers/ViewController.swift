@@ -18,16 +18,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let categoryImages: [UIImage] = [#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "entertainment"),#imageLiteral(resourceName: "gym"),#imageLiteral(resourceName: "coffee"),#imageLiteral(resourceName: "museum"),#imageLiteral(resourceName: "shopping"),#imageLiteral(resourceName: "tree")]
     let locationManager = CLLocationManager()
     var setTerm: String?
+    var categoryLabel = String()
+    var categoryImage = UIImage()
     
-    var categoryImage: UIImageView? = nil
-    var categoryLabel: UILabel? = nil
-    
-    
+    @IBOutlet weak var recentSearches: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var table: UITableView!
     @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
     
     var businessesFetched = [BusinessModel]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +50,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
         let currentCell = table.cellForRow(at: indexPath) as! UITableViewCell
-        categoryLabel?.text = categories[indexPath.row]
-        categoryImage?.image = categoryImages[indexPath.row]
+        categoryLabel = categories[indexPath.row]
+        categoryImage = categoryImages[indexPath.row]
         setTerm = currentCell.textLabel?.text
     }
     
@@ -80,17 +81,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let identifier = segue.identifier else { return }
         
         switch identifier {
-            
         case "toDisplay":
+            var destinationViewController: SearchViewController = segue.destination as! SearchViewController
             let businesses = businessesFetched
             let destination = segue.destination as! SearchViewController
             destination.businessesFetched = businesses
-            destination.categoryImage = categoryImage
-            destination.categoryLabel = categoryLabel
+            destinationViewController.cImage = categoryImage
+            destinationViewController.cLabel = categoryLabel
+        case "recentSearches":
+             var destinationViewController: RecentSearchesViewController = segue.destination as! RecentSearchesViewController
         default:
             print("unexpected segue identifier")
             
         }
+        
     }
 
     @IBAction func getBiz(sender : UIButton) {
@@ -104,6 +108,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             self.performSegue(withIdentifier: "toDisplay", sender: self)
         }
+    }
+    
+    @IBAction func recentSearchesTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "recentSearches", sender: self)
     }
     
 }
