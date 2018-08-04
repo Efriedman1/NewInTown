@@ -17,6 +17,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
+    @IBOutlet weak var generateBttn: UIButton!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     
@@ -43,6 +44,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @IBAction func generateBttnTapped(_ sender: UIButton) {
+        self.tableView.reloadData()
+    }
     @IBAction func backButtonTapped(_ sender: UIButton) {
          performSegue(withIdentifier: "unwindToVC1", sender: self)
     }
@@ -67,8 +71,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
-        guard let business = businessesFetched?[indexPath.row] else {return}
-        
+        let businesses = businessesFetched!
+        let seven = Int(arc4random_uniform(UInt32(businesses.count)))
+      
+        guard let business = businessesFetched?[seven] else {return}
+     
         cell.name.text = business.name
         cell.address.text = business.address
         cell.price.text = business.price
@@ -101,6 +108,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "displaySearch") as! BusinessTableViewCell
         cell.delegate = self
+        cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         configure(cell: cell, atIndexPath: indexPath)
         return cell
     }
@@ -111,7 +119,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         latitude = business.latitude
         longitude = business.longitude
         mapLabel = business.name
-        print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
+        //print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
     }
     
 }

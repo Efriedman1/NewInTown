@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //background color not working
         table?.allowsMultipleSelection = false
         table.dataSource = self
         table.delegate = self
@@ -49,6 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.table.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
+        self.table.cellForRow(at: indexPath as IndexPath)?.tintColor = UIColor.red
         let currentCell = table.cellForRow(at: indexPath) as! UITableViewCell
         categoryLabel = categories[indexPath.row]
         categoryImage = categoryImages[indexPath.row]
@@ -69,6 +70,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = categoryImages[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.blue
+        cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         return cell
     }
     

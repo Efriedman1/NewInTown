@@ -11,6 +11,7 @@ import UIKit
 
 class RecentSearchesViewController: UIViewController {
     
+    //cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
     
     @IBOutlet weak var backBttn: UIButton!
     
