@@ -19,18 +19,16 @@ class BusinessTableViewCell: UITableViewCell {
     //create function to download image from url
     
     @IBOutlet weak var businessImage: UIImageView!
-    @IBOutlet weak var rating: UILabel!
+    
+    @IBOutlet weak var reviews: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var businessCategories: UILabel!
+    @IBOutlet weak var starRating: UIImageView!
+    @IBOutlet weak var yelpImage: UIImageView!
     
-    var business: BusinessModel! {
-        didSet {
-            name.text = business.name
-            //businessImage
-        }
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }

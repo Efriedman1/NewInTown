@@ -10,17 +10,21 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
+//fix cllocation to use clgeocoder and return zipcode
+let view = ViewController()
+let location = view.locationManager
 
+//let setTerm = view.setTerm
 
-
-func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
+func sendBusinessRequest(setTerm: String, completion: @escaping ([BusinessModel]?) -> Void) {
     /**
      Business
      get https://api.yelp.com/v3/businesses/search
      */
     
     var businesses = [BusinessModel]()
-    
+    //print the url parameter
+    print("urlParam: \(setTerm)")
     // Add Headers
     let headers = [
         "Authorization":"Bearer CTfczk-bwFjYUwc90qlTyhITFvb4ZVic5RIdthiQ2CbUqsFXZ4mVuql3L6RqjGMf1wlVR1c03gtCLPksOVGgv8B8IsmfcGUKApj9LLlXXGIrCTqZLIOlpfQsF8VYW3Yx",
@@ -28,8 +32,8 @@ func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
     
     // Add URL parameters
     let urlParams = [
-        "term":"restaurant",
-        "location":"94102"
+        "term":"\(setTerm)",
+        "location": "94102"
         ]
     
     // Fetch Request
@@ -44,6 +48,7 @@ func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
                     let json = jsonBusinessData["businesses"].arrayValue
                     for business in json {
                        businesses.append(BusinessModel.init(json: business))
+                        
                     }
                     //print(businesses)
                 }
@@ -52,6 +57,7 @@ func sendBusinessRequest(completion: @escaping ([BusinessModel]?) -> Void) {
             else {
                 debugPrint("HTTP Request failed: \(response.result.error)")
                 completion([])
+                
         }
     }
 }
