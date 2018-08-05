@@ -20,7 +20,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var setTerm: String?
     var categoryLabel = String()
     var categoryImage = UIImage()
+    var currentLocation = CLLocation()
     
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var recentSearches: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var table: UITableView!
@@ -32,12 +34,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //background color not working
+        
         table?.allowsMultipleSelection = false
         table.dataSource = self
         table.delegate = self
         table.isScrollEnabled = false
-        table.reloadData()
         
         searchButton.layer.cornerRadius = 10
         
@@ -45,6 +46,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animateTable()
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -69,7 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.table.rowHeight = 50
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = categoryImages[indexPath.row]
-        cell.selectionStyle = UITableViewCellSelectionStyle.blue
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         return cell
     }
@@ -98,6 +104,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
     }
+    func animateTable() {
+        table.reloadData()
+        let cells = table.visibleCells
+        
+        let tableViewHeight = table.bounds.size.height
+        
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.5, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
+    }
 
     @IBAction func getBiz(sender : UIButton) {
         sendBusinessRequest(setTerm: setTerm!) { businesses in
@@ -120,6 +144,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last!
+        currentLocation = location
+        print("CurrentLocation: \(currentLocation)")
         let myLatitude = location.coordinate.latitude
         let myLongitude = location.coordinate.longitude
         print("Current Latitude: \(myLatitude), Current Longitude: \(myLongitude)")

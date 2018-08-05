@@ -12,21 +12,23 @@ import Alamofire
 import SwiftyJSON
 import MapKit
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
-    @IBOutlet weak var generateBttn: UIButton!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
-    
     @IBOutlet weak var generateNewListBttn: UIButton!
+    
     var latitude: CLLocationDegrees = 0.0
     var longitude: CLLocationDegrees = 0.0
     var mapLabel = String()
     var cImage = UIImage()
     var cLabel = String()
+    
+    var saved: [BusinessModel] = []
+    var selectedBusiness: BusinessModel?
     
     var businessesFetched: [BusinessModel]?
     
@@ -40,8 +42,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tableView.reloadData()
         }
         if let businessesFetched = businessesFetched {
-            print(businessesFetched)
+            //print(businessesFetched)
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animateTable()
     }
     
     @IBAction func generateBttnTapped(_ sender: UIButton) {
@@ -52,6 +58,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func mapsButtonTapped(_ sender: UIButton) {
+        
         let regionDistance: CLLocationDistance = 1000;
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
         let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, latitude, longitude)
@@ -59,15 +66,30 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let placemark = MKPlacemark(coordinate: coordinates)
         let mapItem = MKMapItem(placemark: placemark)
         
+        saved.append(selectedBusiness!)
+        print("Saved: \(saved)")
+        
         mapItem.name = mapLabel
         mapItem.openInMaps(launchOptions: options)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let businesses = businessesFetched {
-            return 7
+    func animateTable() {
+        tableView.reloadData()
+        let cells = tableView.visibleCells
+        
+        let tableViewHeight = tableView.bounds.size.height
+        
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
         }
-        return 0
+        
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.5, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
     }
     
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
@@ -75,11 +97,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let seven = Int(arc4random_uniform(UInt32(businesses.count)))
       
         guard let business = businessesFetched?[seven] else {return}
-     
+        var d = business.distance * (0.000621371)
+        var b = (d*100).rounded()/100
         cell.name.text = business.name
         cell.address.text = business.address
         cell.price.text = business.price
         cell.reviews.text = "\(business.reviews) Reviews"
+        cell.distance.text = "\(b) mi"
+        cell.businessCategories.text = business.categories
         
         //set star rating
                 if business.rating < 1 {
@@ -104,6 +129,22 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     cell.starRating.image = UIImage(named: "small_5")
         }
     }
+}
+
+extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let business = businessesFetched?[indexPath.row] else {return}
+        let currentCell = tableView.cellForRow(at: indexPath) as! BusinessTableViewCell
+        self.selectedBusiness = businessesFetched?[indexPath.row]
+        print("selected business: \(String(describing: selectedBusiness))")
+        latitude = business.latitude
+        longitude = business.longitude
+        mapLabel = business.name
+        print("****Business categories count:\(business.categoriesCount)****")
+        print("****Selected Business categories:\(business.categories)****")
+        //print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "displaySearch") as! BusinessTableViewCell
@@ -113,18 +154,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let business = businessesFetched?[indexPath.row] else {return}
-        let currentCell = tableView.cellForRow(at: indexPath) as! BusinessTableViewCell
-        latitude = business.latitude
-        longitude = business.longitude
-        mapLabel = business.name
-        //print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let businesses = businessesFetched {
+            return 7
+        }
+        return 0
     }
-    
-}
-
-extension SearchViewController: BusinessTableViewCellDelegate {
     
 }
 

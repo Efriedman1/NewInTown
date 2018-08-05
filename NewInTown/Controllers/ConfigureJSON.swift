@@ -43,14 +43,13 @@ func sendBusinessRequest(setTerm: String, completion: @escaping ([BusinessModel]
             if (response.result.error == nil) {
                 //retrieve data as JSON, check first to make sure there is data being retrieved
                 if let value = response.result.value {
-                    
                     let jsonBusinessData = JSON(value)
                     let json = jsonBusinessData["businesses"].arrayValue
                     for business in json {
                        businesses.append(BusinessModel.init(json: business))
                         
                     }
-                    //print(businesses)
+                    
                 }
                 completion(businesses)
             }
