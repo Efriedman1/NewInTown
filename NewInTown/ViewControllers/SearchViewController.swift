@@ -14,8 +14,9 @@ import MapKit
 
 class SearchViewController: UIViewController {
     
+    
+    @IBOutlet weak var backBttn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapsButton: UIButton!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -48,13 +49,20 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         animateTable()
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
     }
     
     @IBAction func generateBttnTapped(_ sender: UIButton) {
         self.tableView.reloadData()
     }
-    @IBAction func backButtonTapped(_ sender: UIButton) {
-         performSegue(withIdentifier: "unwindToVC1", sender: self)
+    
+
+    @IBAction func backBttnTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "unwindToVC1", sender: self)
     }
     
     @IBAction func mapsButtonTapped(_ sender: UIButton) {
@@ -149,6 +157,7 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "displaySearch") as! BusinessTableViewCell
         cell.delegate = self
+        tableView.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         configure(cell: cell, atIndexPath: indexPath)
         return cell

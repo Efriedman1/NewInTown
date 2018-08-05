@@ -29,9 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func unwindToVC1(segue: UIStoryboardSegue) { }
     
     var businessesFetched = [BusinessModel]()
-    
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +74,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = categoryImages[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        table.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         return cell
     }

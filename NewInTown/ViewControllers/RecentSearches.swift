@@ -21,7 +21,8 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
     //cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
     
     @IBOutlet weak var table: UITableView!
-    @IBOutlet weak var backBttn: UIButton!
+    @IBOutlet weak var backBttn: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,37 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
             self.table.reloadData()
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animateTable()
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
     
-    @IBAction func backBttnTapped(_ sender: UIButton) {
+    @IBAction func backBttnTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "unwindToVC1", sender: self)
+    }
+    
+    func animateTable() {
+        //table.reloadData()
+        let cells = table.visibleCells
+        
+        let tableViewHeight = table.bounds.size.height
+        
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.5, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
     }
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
         let businesses = businessesFetched!
