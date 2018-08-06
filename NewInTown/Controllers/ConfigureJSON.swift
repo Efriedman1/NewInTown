@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import CoreLocation
 
 //fix cllocation to use clgeocoder and return zipcode
 let view = ViewController()
@@ -16,7 +17,7 @@ let location = view.locationManager
 
 //let setTerm = view.setTerm
 
-func sendBusinessRequest(setTerm: String, completion: @escaping ([BusinessModel]?) -> Void) {
+func sendBusinessRequest(setTerm: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees, completion: @escaping ([BusinessModel]?) -> Void) {
     /**
      Business
      get https://api.yelp.com/v3/businesses/search
@@ -33,7 +34,9 @@ func sendBusinessRequest(setTerm: String, completion: @escaping ([BusinessModel]
     // Add URL parameters
     let urlParams = [
         "term":"\(setTerm)",
-        "location": "94102"
+        "latitude": "\(latitude)",
+        "longitude": "\(longitude)",
+        "limit": "50"
         ]
     
     // Fetch Request

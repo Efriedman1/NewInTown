@@ -23,7 +23,7 @@ struct BusinessModel {
     var rating: Double
     var categoriesCount: Int
     var categories: String
-    
+    var url: String
     
     init(json: JSON) {
         self.name = json["name"].stringValue
@@ -38,14 +38,7 @@ struct BusinessModel {
         self.rating = json["rating"].doubleValue
         self.categories = json["categories"][0]["title"].stringValue
         self.categoriesCount = json["categories"].count
-        
+        self.url = json["url"].stringValue
     }
    
 }
-//func find() {
-//    for x in 0 ..<  {
-//        categories = [json["categories"][x]["title"].stringValue]
-//        categories.append(contentsOf: [json["categories"][x]["title"].stringValue])
-//        print("BUSINESSMODEL: CATEGORIRES\(categories)")
-//    }
-//}

@@ -16,7 +16,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     let categories = ["Food", "Entertainment", "Gyms", "Coffee Shops", "Museums", "Shopping", "Parks"]
     let categoryImages: [UIImage] = [#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "entertainment"),#imageLiteral(resourceName: "gym"),#imageLiteral(resourceName: "coffee"),#imageLiteral(resourceName: "museum"),#imageLiteral(resourceName: "shopping"),#imageLiteral(resourceName: "tree")]
+    
     let locationManager = CLLocationManager()
+    var myLongitude: CLLocationDegrees?
+    var myLatitude: CLLocationDegrees?
     var setTerm: String?
     var categoryLabel = String()
     var categoryImage = UIImage()
@@ -123,7 +126,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     @IBAction func getBiz(sender : UIButton) {
-        sendBusinessRequest(setTerm: setTerm!) { businesses in
+        sendBusinessRequest(setTerm: setTerm!, latitude: myLatitude!, longitude: myLongitude!) { businesses in
             if let businesses = businesses {
                 self.businessesFetched = businesses
                 DispatchQueue.main.async {
@@ -145,8 +148,8 @@ extension ViewController: CLLocationManagerDelegate {
         let location = locations.last!
         currentLocation = location
         print("CurrentLocation: \(currentLocation)")
-        let myLatitude = location.coordinate.latitude
-        let myLongitude = location.coordinate.longitude
+        myLatitude = location.coordinate.latitude
+        myLongitude = location.coordinate.longitude
         print("Current Latitude: \(myLatitude), Current Longitude: \(myLongitude)")
     }
 }

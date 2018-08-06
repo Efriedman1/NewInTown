@@ -28,17 +28,17 @@ class SearchViewController: UIViewController {
     var cImage = UIImage()
     var cLabel = String()
     
-    var saved: [BusinessModel] = []
+    //var saved: [BusinessModel] = []
     var selectedBusiness: BusinessModel?
     let defaults = UserDefaults.standard
     var businessesFetched: [BusinessModel]?
     
-    var count = 0
+    //var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //defaults.set(saved, forKey: "saved")
+        //saved = defaults.array(forKey: "saved") as! [BusinessModel]
+        
         generateNewListBttn.layer.cornerRadius = 10
         categoryImage.image = cImage
         categoryLabel.text = cLabel
@@ -62,8 +62,6 @@ class SearchViewController: UIViewController {
     
     //GENERATE NEW LIST BUTTON
     @IBAction func generateBttnTapped(_ sender: UIButton) {
-        count += 7
-        print(count)
         self.tableView.reloadData()
     }
     
@@ -82,9 +80,9 @@ class SearchViewController: UIViewController {
         let placemark = MKPlacemark(coordinate: coordinates)
         let mapItem = MKMapItem(placemark: placemark)
         
-        //saved = defaults.array(forKey: "saved") as! [BusinessModel]
-        saved.append(selectedBusiness!)
-        print("Saved: \(saved)")
+        //saved.append(selectedBusiness!)
+        //print("Saved: \(saved)")
+        //defaults.set(saved, forKey: "saved")
         
         mapItem.name = mapLabel
         mapItem.openInMaps(launchOptions: options)
@@ -110,11 +108,12 @@ class SearchViewController: UIViewController {
     
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
         let businesses = businessesFetched!
-        var index = indexPath.row
-        guard let business = businessesFetched?[index] else {return}
+        guard let business = businessesFetched?[indexPath.row] else {return}
+     
         //distance meters to miles
         let d = business.distance * (0.000621371)
         let b = (d*100).rounded()/100
+        
         cell.name.text = business.name
         cell.address.text = business.address
         cell.price.text = business.price
@@ -151,7 +150,7 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let business = businessesFetched?[indexPath.row] else {return}
-        let currentCell = tableView.cellForRow(at: indexPath) as! BusinessTableViewCell
+        //let currentCell = tableView.cellForRow(at: indexPath) as! BusinessTableViewCell
         self.selectedBusiness = businessesFetched?[indexPath.row]
         print("selected business: \(String(describing: selectedBusiness))")
         latitude = business.latitude
@@ -173,7 +172,7 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let businesses = businessesFetched {
-            return 7
+            return businesses.count
         }
         return 0
     }

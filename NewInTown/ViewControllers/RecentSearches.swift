@@ -14,7 +14,6 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
     
      var search = SearchViewController()
      //var saved: [BusinessModel] = []
-     var saved = [SavedSearch].self
      var businessesFetched: [BusinessModel]?
      //var recent = [BusinessModel]()
     
@@ -28,7 +27,7 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         //saved = search.saved
-        print("Recent Searches Saved: \(saved)")
+        //print("Recent Searches Saved: \(saved)")
         table.delegate = self
         table.dataSource = self
         DispatchQueue.main.async {
@@ -70,6 +69,7 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
         let businesses = businessesFetched!
         guard let business = businessesFetched?[indexPath.row] else {return}
+        
         var d = business.distance * (0.000621371)
         var b = (d*100).rounded()/100
         cell.name.text = business.name
