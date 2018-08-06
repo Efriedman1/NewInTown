@@ -30,11 +30,15 @@ class SearchViewController: UIViewController {
     
     var saved: [BusinessModel] = []
     var selectedBusiness: BusinessModel?
-    
+    let defaults = UserDefaults.standard
     var businessesFetched: [BusinessModel]?
+    
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //defaults.set(saved, forKey: "saved")
         generateNewListBttn.layer.cornerRadius = 10
         categoryImage.image = cImage
         categoryLabel.text = cLabel
@@ -48,7 +52,7 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        animateTable()
+        //animateTable()
         UIApplication.shared.statusBarStyle = .lightContent
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,15 +60,19 @@ class SearchViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .default
     }
     
+    //GENERATE NEW LIST BUTTON
     @IBAction func generateBttnTapped(_ sender: UIButton) {
+        count += 7
+        print(count)
         self.tableView.reloadData()
     }
     
-
+    //BACK BUTTON
     @IBAction func backBttnTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "unwindToVC1", sender: self)
     }
     
+    //SHOW IN MAPS BUTTON
     @IBAction func mapsButtonTapped(_ sender: UIButton) {
         
         let regionDistance: CLLocationDistance = 1000;
@@ -74,6 +82,7 @@ class SearchViewController: UIViewController {
         let placemark = MKPlacemark(coordinate: coordinates)
         let mapItem = MKMapItem(placemark: placemark)
         
+        //saved = defaults.array(forKey: "saved") as! [BusinessModel]
         saved.append(selectedBusiness!)
         print("Saved: \(saved)")
         
@@ -82,7 +91,6 @@ class SearchViewController: UIViewController {
     }
     
     func animateTable() {
-        tableView.reloadData()
         let cells = tableView.visibleCells
         
         let tableViewHeight = tableView.bounds.size.height
@@ -102,9 +110,9 @@ class SearchViewController: UIViewController {
     
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
         let businesses = businessesFetched!
-        let seven = Int(arc4random_uniform(UInt32(businesses.count)))
       
-        guard let business = businessesFetched?[seven] else {return}
+        guard let business = businessesFetched?[indexPath.row] else {return}
+        //distance meters to miles
         var d = business.distance * (0.000621371)
         var b = (d*100).rounded()/100
         cell.name.text = business.name
@@ -149,8 +157,8 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
         latitude = business.latitude
         longitude = business.longitude
         mapLabel = business.name
-        print("****Business categories count:\(business.categoriesCount)****")
-        print("****Selected Business categories:\(business.categories)****")
+        //print("****Business categories count:\(business.categoriesCount)****")
+        //print("****Selected Business categories:\(business.categories)****")
         //print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
     }
     

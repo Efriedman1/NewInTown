@@ -22,7 +22,6 @@
 		07E2C1C8210F750A0010CA23 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2C1C7210F750A0010CA23 /* CategoryViewCell.swift */; };
 		07F76F80210908FF006DF8B9 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F7F210908FF006DF8B9 /* Business.swift */; };
 		07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F8421091174006DF8B9 /* ConfigureJSON.swift */; };
-		07F76FCD21096681006DF8B9 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76FCC21096681006DF8B9 /* Categories.swift */; };
 		07F76FCF210976CE006DF8B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76FCE210976CE006DF8B9 /* SearchViewController.swift */; };
 		2A8A411578EB9ACE9AF5DE57 /* Pods_NewInTown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BD92FC596EF17FB617A69E /* Pods_NewInTown.framework */; };
 		403F9733684D6C8B5E26478A /* Pods_NewInTownTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082CCD39026D800C7D454D1B /* Pods_NewInTownTests.framework */; };
@@ -68,7 +67,6 @@
 		07E2C1C7210F750A0010CA23 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		07F76F7F210908FF006DF8B9 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		07F76F8421091174006DF8B9 /* ConfigureJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureJSON.swift; sourceTree = "<group>"; };
-		07F76FCC21096681006DF8B9 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		07F76FCE210976CE006DF8B9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		082CCD39026D800C7D454D1B /* Pods_NewInTownTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewInTownTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1258F374B65A5A61889B0C48 /* Pods-NewInTown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewInTown.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewInTown/Pods-NewInTown.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +117,13 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		071991072117C52E00B6A8B6 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		079404C22108F47E00C3893F = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +149,7 @@
 		079404CD2108F47E00C3893F /* NewInTown */ = {
 			isa = PBXGroup;
 			children = (
+				071991072117C52E00B6A8B6 /* Core Data */,
 				07E2C1C9210F75160010CA23 /* Views */,
 				07F76F8721091874006DF8B9 /* Controllers */,
 				07F76F7C210908DF006DF8B9 /* Models */,
@@ -187,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				07F76F7F210908FF006DF8B9 /* Business.swift */,
-				07F76FCC21096681006DF8B9 /* Categories.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -458,7 +463,6 @@
 				07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */,
 				079404CF2108F47E00C3893F /* AppDelegate.swift in Sources */,
 				07E2C1C8210F750A0010CA23 /* CategoryViewCell.swift in Sources */,
-				07F76FCD21096681006DF8B9 /* Categories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

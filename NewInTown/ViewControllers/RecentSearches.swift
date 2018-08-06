@@ -13,7 +13,8 @@ import UIKit
 class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
      var search = SearchViewController()
-     var saved: [BusinessModel] = []
+     //var saved: [BusinessModel] = []
+     var saved = [SavedSearch].self
      var businessesFetched: [BusinessModel]?
      //var recent = [BusinessModel]()
     
