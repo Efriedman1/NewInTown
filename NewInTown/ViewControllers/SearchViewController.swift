@@ -110,11 +110,11 @@ class SearchViewController: UIViewController {
     
     func configure(cell: BusinessTableViewCell, atIndexPath indexPath: IndexPath) {
         let businesses = businessesFetched!
-      
-        guard let business = businessesFetched?[indexPath.row] else {return}
+        var index = indexPath.row
+        guard let business = businessesFetched?[index] else {return}
         //distance meters to miles
-        var d = business.distance * (0.000621371)
-        var b = (d*100).rounded()/100
+        let d = business.distance * (0.000621371)
+        let b = (d*100).rounded()/100
         cell.name.text = business.name
         cell.address.text = business.address
         cell.price.text = business.price
