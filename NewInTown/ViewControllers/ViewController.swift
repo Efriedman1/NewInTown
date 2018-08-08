@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         table?.allowsMultipleSelection = false
         table.dataSource = self
         table.delegate = self
@@ -43,7 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         searchButton.layer.cornerRadius = 10
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
@@ -51,10 +52,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         animateTable()
+        searchButton.isEnabled = false
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.searchButton.isEnabled = true
         self.table.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
         self.table.cellForRow(at: indexPath as IndexPath)?.tintColor = UIColor.red
         let currentCell = table.cellForRow(at: indexPath) as! UITableViewCell
@@ -100,6 +103,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destinationViewController.cLabel = categoryLabel
         case "recentSearches":
              var destinationViewController: RecentSearchesViewController = segue.destination as! RecentSearchesViewController
+            let recent = RecentSearchesViewController()
+            recent.saved = [SavedSearch]()
+            print("\(recent.saved.count)")
         default:
             print("unexpected segue identifier")
             
@@ -145,7 +151,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 }
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last!
+        guard let location = locations.last else { return }
         currentLocation = location
         print("CurrentLocation: \(currentLocation)")
         myLatitude = location.coordinate.latitude

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070A649521190C0F001A91CA /* RecentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070A649421190C0F001A91CA /* RecentModel.swift */; };
 		07146C21210BEFA00037836A /* BusinessTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07146C20210BEFA00037836A /* BusinessTableView.swift */; };
+		0717AD7B211A5A5700C41636 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0717AD7A211A5A5700C41636 /* CoreData.swift */; };
 		071990C4211593DD00B6A8B6 /* RecentSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071990C3211593DD00B6A8B6 /* RecentSearches.swift */; };
-		071990C6211678A200B6A8B6 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071990C5211678A200B6A8B6 /* PersistenceService.swift */; };
 		0772CA82210B8D85009F0B32 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0772CA81210B8D85009F0B32 /* CoreLocation.framework */; };
 		079404CF2108F47E00C3893F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079404CE2108F47E00C3893F /* AppDelegate.swift */; };
 		079404D12108F47E00C3893F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079404D02108F47E00C3893F /* ViewController.swift */; };
@@ -46,9 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070A649421190C0F001A91CA /* RecentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentModel.swift; sourceTree = "<group>"; };
 		07146C20210BEFA00037836A /* BusinessTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTableView.swift; sourceTree = "<group>"; };
+		0717AD7A211A5A5700C41636 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		071990C3211593DD00B6A8B6 /* RecentSearches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearches.swift; sourceTree = "<group>"; };
-		071990C5211678A200B6A8B6 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		0772CA81210B8D85009F0B32 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		079404CB2108F47E00C3893F /* NewInTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewInTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		079404CE2108F47E00C3893F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,13 +119,6 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		071991072117C52E00B6A8B6 /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Core Data";
-			sourceTree = "<group>";
-		};
 		079404C22108F47E00C3893F = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +144,8 @@
 		079404CD2108F47E00C3893F /* NewInTown */ = {
 			isa = PBXGroup;
 			children = (
-				071991072117C52E00B6A8B6 /* Core Data */,
 				07E2C1C9210F75160010CA23 /* Views */,
-				07F76F8721091874006DF8B9 /* Controllers */,
+				07F76F8721091874006DF8B9 /* Helpers */,
 				07F76F7C210908DF006DF8B9 /* Models */,
 				07F76F8621091868006DF8B9 /* ViewControllers */,
 				071990C7211678B000B6A8B6 /* Storyboards */,
@@ -193,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				07F76F7F210908FF006DF8B9 /* Business.swift */,
+				070A649421190C0F001A91CA /* RecentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,14 +202,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		07F76F8721091874006DF8B9 /* Controllers */ = {
+		07F76F8721091874006DF8B9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				079404CE2108F47E00C3893F /* AppDelegate.swift */,
-				071990C5211678A200B6A8B6 /* PersistenceService.swift */,
+				0717AD7A211A5A5700C41636 /* CoreData.swift */,
 				07F76F8421091174006DF8B9 /* ConfigureJSON.swift */,
 			);
-			path = Controllers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D5A8F7C251EA55F922EF48C4 /* Pods */ = {
@@ -456,13 +451,14 @@
 				079404D12108F47E00C3893F /* ViewController.swift in Sources */,
 				07146C21210BEFA00037836A /* BusinessTableView.swift in Sources */,
 				07F76FCF210976CE006DF8B9 /* SearchViewController.swift in Sources */,
-				071990C6211678A200B6A8B6 /* PersistenceService.swift in Sources */,
+				0717AD7B211A5A5700C41636 /* CoreData.swift in Sources */,
 				079404D72108F47E00C3893F /* NewInTown.xcdatamodeld in Sources */,
 				071990C4211593DD00B6A8B6 /* RecentSearches.swift in Sources */,
 				07F76F80210908FF006DF8B9 /* Business.swift in Sources */,
 				07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */,
 				079404CF2108F47E00C3893F /* AppDelegate.swift in Sources */,
 				07E2C1C8210F750A0010CA23 /* CategoryViewCell.swift in Sources */,
+				070A649521190C0F001A91CA /* RecentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
