@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070A649521190C0F001A91CA /* RecentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070A649421190C0F001A91CA /* RecentModel.swift */; };
 		07146C21210BEFA00037836A /* BusinessTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07146C20210BEFA00037836A /* BusinessTableView.swift */; };
+		0717AD7B211A5A5700C41636 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0717AD7A211A5A5700C41636 /* CoreData.swift */; };
 		071990C4211593DD00B6A8B6 /* RecentSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071990C3211593DD00B6A8B6 /* RecentSearches.swift */; };
-		071990C6211678A200B6A8B6 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071990C5211678A200B6A8B6 /* PersistenceService.swift */; };
 		0772CA82210B8D85009F0B32 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0772CA81210B8D85009F0B32 /* CoreLocation.framework */; };
 		079404CF2108F47E00C3893F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079404CE2108F47E00C3893F /* AppDelegate.swift */; };
 		079404D12108F47E00C3893F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079404D02108F47E00C3893F /* ViewController.swift */; };
@@ -22,7 +23,6 @@
 		07E2C1C8210F750A0010CA23 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2C1C7210F750A0010CA23 /* CategoryViewCell.swift */; };
 		07F76F80210908FF006DF8B9 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F7F210908FF006DF8B9 /* Business.swift */; };
 		07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76F8421091174006DF8B9 /* ConfigureJSON.swift */; };
-		07F76FCD21096681006DF8B9 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76FCC21096681006DF8B9 /* Categories.swift */; };
 		07F76FCF210976CE006DF8B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F76FCE210976CE006DF8B9 /* SearchViewController.swift */; };
 		2A8A411578EB9ACE9AF5DE57 /* Pods_NewInTown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BD92FC596EF17FB617A69E /* Pods_NewInTown.framework */; };
 		403F9733684D6C8B5E26478A /* Pods_NewInTownTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082CCD39026D800C7D454D1B /* Pods_NewInTownTests.framework */; };
@@ -47,9 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070A649421190C0F001A91CA /* RecentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentModel.swift; sourceTree = "<group>"; };
 		07146C20210BEFA00037836A /* BusinessTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessTableView.swift; sourceTree = "<group>"; };
+		0717AD7A211A5A5700C41636 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		071990C3211593DD00B6A8B6 /* RecentSearches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearches.swift; sourceTree = "<group>"; };
-		071990C5211678A200B6A8B6 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		0772CA81210B8D85009F0B32 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		079404CB2108F47E00C3893F /* NewInTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewInTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		079404CE2108F47E00C3893F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		07E2C1C7210F750A0010CA23 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		07F76F7F210908FF006DF8B9 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		07F76F8421091174006DF8B9 /* ConfigureJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureJSON.swift; sourceTree = "<group>"; };
-		07F76FCC21096681006DF8B9 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		07F76FCE210976CE006DF8B9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		082CCD39026D800C7D454D1B /* Pods_NewInTownTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewInTownTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1258F374B65A5A61889B0C48 /* Pods-NewInTown.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewInTown.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewInTown/Pods-NewInTown.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				07E2C1C9210F75160010CA23 /* Views */,
-				07F76F8721091874006DF8B9 /* Controllers */,
+				07F76F8721091874006DF8B9 /* Helpers */,
 				07F76F7C210908DF006DF8B9 /* Models */,
 				07F76F8621091868006DF8B9 /* ViewControllers */,
 				071990C7211678B000B6A8B6 /* Storyboards */,
@@ -187,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				07F76F7F210908FF006DF8B9 /* Business.swift */,
-				07F76FCC21096681006DF8B9 /* Categories.swift */,
+				070A649421190C0F001A91CA /* RecentModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,14 +202,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		07F76F8721091874006DF8B9 /* Controllers */ = {
+		07F76F8721091874006DF8B9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				079404CE2108F47E00C3893F /* AppDelegate.swift */,
-				071990C5211678A200B6A8B6 /* PersistenceService.swift */,
+				0717AD7A211A5A5700C41636 /* CoreData.swift */,
 				07F76F8421091174006DF8B9 /* ConfigureJSON.swift */,
 			);
-			path = Controllers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D5A8F7C251EA55F922EF48C4 /* Pods */ = {
@@ -411,11 +411,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NewInTown/Pods-NewInTown-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,14 +453,14 @@
 				079404D12108F47E00C3893F /* ViewController.swift in Sources */,
 				07146C21210BEFA00037836A /* BusinessTableView.swift in Sources */,
 				07F76FCF210976CE006DF8B9 /* SearchViewController.swift in Sources */,
-				071990C6211678A200B6A8B6 /* PersistenceService.swift in Sources */,
+				0717AD7B211A5A5700C41636 /* CoreData.swift in Sources */,
 				079404D72108F47E00C3893F /* NewInTown.xcdatamodeld in Sources */,
 				071990C4211593DD00B6A8B6 /* RecentSearches.swift in Sources */,
 				07F76F80210908FF006DF8B9 /* Business.swift in Sources */,
 				07F76F8521091174006DF8B9 /* ConfigureJSON.swift in Sources */,
 				079404CF2108F47E00C3893F /* AppDelegate.swift in Sources */,
 				07E2C1C8210F750A0010CA23 /* CategoryViewCell.swift in Sources */,
-				07F76FCD21096681006DF8B9 /* Categories.swift in Sources */,
+				070A649521190C0F001A91CA /* RecentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

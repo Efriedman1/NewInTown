@@ -10,7 +10,8 @@ target 'NewInTown' do
 
     pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 4.0'
-
+    pod 'NVActivityIndicatorView'
+    
   target 'NewInTownTests' do
     inherit! :search_paths
     # Pods for testing

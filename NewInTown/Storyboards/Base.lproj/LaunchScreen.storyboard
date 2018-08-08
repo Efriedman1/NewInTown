@@ -14,7 +14,7 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" alpha="0.90000000000000002" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="121" y="259" width="133" height="149"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.82745098039215681" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.83529411764705885" green="0.22745098039215686" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AGK-BL-Prg" secondAttribute="trailing" constant="121" id="UVL-mc-4od"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AGK-BL-Prg" secondAttribute="bottom" constant="259" id="adO-o1-qsw"/>
