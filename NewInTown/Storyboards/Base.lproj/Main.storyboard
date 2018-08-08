@@ -386,7 +386,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="yelp" translatesAutoresizingMaskIntoConstraints="NO" id="apR-r8-Aff">
+                                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="yelp" translatesAutoresizingMaskIntoConstraints="NO" id="apR-r8-Aff">
                                                             <rect key="frame" x="262" y="84" width="48" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="L03-lm-53l"/>

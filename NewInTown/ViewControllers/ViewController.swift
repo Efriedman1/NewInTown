@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import CoreLocation
-
+import NVActivityIndicatorView
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var categoryLabel = String()
     var categoryImage = UIImage()
     var currentLocation = CLLocation()
+    var loadingView: NVActivityIndicatorView!
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var recentSearches: UIButton!
@@ -36,6 +37,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadingView = NVActivityIndicatorView(frame: CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: 200, height: 200))
+        loadingView.color = UIColor(red:0.84, green:0.23, blue:0.24, alpha:1.0)
+        loadingView.center = self.view.center
+        loadingView.type = .circleStrokeSpin
         
         table?.allowsMultipleSelection = false
         table.dataSource = self
@@ -53,7 +58,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewWillAppear(animated)
         animateTable()
         searchButton.isEnabled = false
-        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        loadingView.stopAnimating()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,8 +88,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = categoryImages[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        table.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
-        cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
+        table.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.5)
+        cell.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.5)
         return cell
     }
     
@@ -130,10 +138,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             delayCounter += 1
         }
     }
+    
 
     @IBAction func getBiz(sender : UIButton) {
+        loadingView.startAnimating()
+        self.view.addSubview(loadingView)
         sendBusinessRequest(setTerm: setTerm!, latitude: myLatitude!, longitude: myLongitude!) { businesses in
             if let businesses = businesses {
+              
                 self.businessesFetched = businesses
                 DispatchQueue.main.async {
                 }

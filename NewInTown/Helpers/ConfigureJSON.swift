@@ -36,8 +36,8 @@ func sendBusinessRequest(setTerm: String, latitude: CLLocationDegrees, longitude
         "term":"\(setTerm)",
         "latitude": "\(latitude)",
         "longitude": "\(longitude)",
-        "limit": "50",
-        "open_now": "true"
+        "limit": "50"
+        //"open_now": "true"
         ]
     
     // Fetch Request
@@ -55,6 +55,7 @@ func sendBusinessRequest(setTerm: String, latitude: CLLocationDegrees, longitude
                     }
                     
                 }
+
                 completion(businesses)
             }
             else {

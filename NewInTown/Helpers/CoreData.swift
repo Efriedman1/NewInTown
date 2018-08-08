@@ -28,6 +28,7 @@ struct CoreDataHelper{
     
     static func saveBusiness() {
         do {
+            print("Context \(String(describing: context.name))")
             try context.save()
         } catch let error {
             print("Could not save \(error.localizedDescription)")

@@ -11,6 +11,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import MapKit
+import NVActivityIndicatorView
+import CoreData
 
 class SearchViewController: UIViewController {
     
@@ -28,6 +30,7 @@ class SearchViewController: UIViewController {
     var cImage = UIImage()
     var cLabel = String()
     
+    var imageUrl = ""
  
     var selectedBusiness: BusinessModel?
     var businessesFetched: [BusinessModel]?
@@ -47,7 +50,7 @@ class SearchViewController: UIViewController {
             let retrievedData = try? PropertyListDecoder().decode(Array<RecentModel>.self, from: data)
             print("Data \(String(describing: retrievedData))")
         }
-
+        
         generateNewListBttn.showsTouchWhenHighlighted = false
         generateNewListBttn.layer.cornerRadius = 10
         categoryImage.image = cImage
@@ -70,6 +73,12 @@ class SearchViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .default
     }
     
+    @objc func imageTapped(){
+        print("image tapped: \(imageUrl)")
+        UIApplication.shared.open(URL(string : imageUrl)!, options: [:], completionHandler: { (status) in
+            
+        })
+    }
     
     //GENERATE NEW LIST BUTTON
     @IBAction func generateBttnTapped(_ sender: UIButton) {
@@ -127,16 +136,18 @@ class SearchViewController: UIViewController {
         mapItem.openInMaps(launchOptions: options)
  
     }
+    
     func saveToCoreData(){
-        
         let saved = CoreDataHelper.newBusiness()
         saved.name = selectedBusiness!.name
         saved.address = selectedBusiness!.address
         saved.price = selectedBusiness!.price
         saved.reviews = Int32(selectedBusiness!.reviews)
         CoreDataHelper.saveBusiness()
-        
+        print(saved)
     }
+    
+    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        guard let identifier = segue.identifier else { return }
 //        
@@ -165,13 +176,6 @@ class SearchViewController: UIViewController {
 //        }
 //    }
     
-    
-    
-    
-    
-    
-    
-    
     func animateTable() {
         let cells = tableView.visibleCells
         
@@ -197,6 +201,7 @@ class SearchViewController: UIViewController {
         //distance meters to miles
         //let d = business.distance * (0.000621371)
        // let b = (d*100).rounded()/100
+
         
         cell.name.text = business.name
         cell.address.text = business.address
@@ -204,6 +209,11 @@ class SearchViewController: UIViewController {
         cell.reviews.text = "\(business.reviews) Reviews"
         //cell.distance.text = "\(b) mi"
         cell.businessCategories.text = business.categories
+        
+        let imageTapped = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        
+        cell.yelpImage.isUserInteractionEnabled = true
+        cell.yelpImage.addGestureRecognizer(imageTapped)
         
         //set star rating
         if business.rating < 1 {
@@ -245,6 +255,7 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
         latitude = business.latitude
         longitude = business.longitude
         mapLabel = business.name
+        imageUrl = business.url
         //print("****Business categories count:\(business.categoriesCount)****")
         //print("****Selected Business categories:\(business.categories)****")
         //print("*+*lat: \(latitude)*+*long: \(longitude)*+*")

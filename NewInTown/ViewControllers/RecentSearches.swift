@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import CoreData
 
 class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
