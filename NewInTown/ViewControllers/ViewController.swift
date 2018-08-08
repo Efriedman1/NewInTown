@@ -112,7 +112,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case "recentSearches":
              var destinationViewController: RecentSearchesViewController = segue.destination as! RecentSearchesViewController
             let recent = RecentSearchesViewController()
-            recent.saved = [SavedSearch]()
+            // recent.saved = [SavedSearch]()
             print("\(recent.saved.count)")
         default:
             print("unexpected segue identifier")

@@ -126,12 +126,9 @@ class SearchViewController: UIViewController {
         let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
         let placemark = MKPlacemark(coordinate: coordinates)
         let mapItem = MKMapItem(placemark: placemark)
-        let saved = CoreDataHelper.newBusiness()
-        saved.name = selectedBusiness!.name
-        
+     
         saveToCoreData()
         
-        print("name = \(String(describing: saved.name)))")
         mapItem.name = mapLabel
         mapItem.openInMaps(launchOptions: options)
  
@@ -143,38 +140,11 @@ class SearchViewController: UIViewController {
         saved.address = selectedBusiness!.address
         saved.price = selectedBusiness!.price
         saved.reviews = Int32(selectedBusiness!.reviews)
+        saved.categories = selectedBusiness!.categories
         CoreDataHelper.saveBusiness()
         print(saved)
     }
     
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let identifier = segue.identifier else { return }
-//        
-//        switch identifier {
-////        case "save" where note != nil:
-////            note?.title = titleTextField.text ?? ""
-////            note?.content = contentTextView.text ?? ""
-////            note?.modificationTime = Date()
-////
-////            CoreDataHelper.saveNote()
-//            
-//        case "save" where saved == nil:
-//            let saved = CoreDataHelper.newBusiness()
-//            saved.name = selectedBusiness!.name
-//            saved.address = selectedBusiness!.address
-//            saved.price = selectedBusiness!.price
-//            saved.reviews = Int32(selectedBusiness!.reviews)
-//            
-//            CoreDataHelper.saveBusiness()
-//            
-//        case "cancel":
-//            print("cancel bar button item tapped")
-//            
-//        default:
-//            print("unexpected segue identifier")
-//        }
-//    }
     
     func animateTable() {
         let cells = tableView.visibleCells
@@ -267,7 +237,7 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "displaySearch") as! BusinessTableViewCell
         cell.delegate = self
-        cell.selectionStyle = UITableViewCellSelectionStyle.blue
+        cell.selectionStyle = UITableViewCellSelectionStyle.gray
         tableView.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
         configure(cell: cell, atIndexPath: indexPath)
