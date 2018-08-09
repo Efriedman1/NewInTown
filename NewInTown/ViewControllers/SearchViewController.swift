@@ -16,6 +16,8 @@ import CoreData
 
 class SearchViewController: UIViewController {
     
+    let categories = ["Food", "Entertainment", "Gyms", "Coffee Shops", "Museums", "Shopping", "Parks"]
+    let categoryImages: [UIImage] = [#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "entertainment"),#imageLiteral(resourceName: "gym"),#imageLiteral(resourceName: "coffee"),#imageLiteral(resourceName: "museum"),#imageLiteral(resourceName: "shopping"),#imageLiteral(resourceName: "tree")]
     
     @IBOutlet weak var backBttn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -23,14 +25,14 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var generateNewListBttn: UIButton!
-    
+    @IBOutlet weak var navBar: UINavigationItem!
     var latitude: CLLocationDegrees = 0.0
     var longitude: CLLocationDegrees = 0.0
     var mapLabel = String()
     var cImage = UIImage()
     var cLabel = String()
     
-    var imageUrl = ""
+    var imageUrl = "example.com"
  
     var selectedBusiness: BusinessModel?
     var businessesFetched: [BusinessModel]?
@@ -46,15 +48,16 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapsButton.isEnabled = false
-        if let data = UserDefaults.standard.value(forKey:"saved") as? Data {
-            let retrievedData = try? PropertyListDecoder().decode(Array<RecentModel>.self, from: data)
-            print("Data \(String(describing: retrievedData))")
-        }
-        
+//        if let data = UserDefaults.standard.value(forKey:"saved") as? Data {
+//            let retrievedData = try? PropertyListDecoder().decode(Array<RecentModel>.self, from: data)
+//            print("Data \(String(describing: retrievedData))")
+//        }
+        navBar.title = "\(cLabel)"
+        tableView.rowHeight = 110
         generateNewListBttn.showsTouchWhenHighlighted = false
         generateNewListBttn.layer.cornerRadius = 10
-        categoryImage.image = cImage
-        categoryLabel.text = cLabel
+        //categoryImage.image = cImage
+        //categoryLabel.text = cLabel
         mapsButton.layer.cornerRadius = 10
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -65,7 +68,7 @@ class SearchViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //animateTable()
+        animateTable()
         UIApplication.shared.statusBarStyle = .lightContent
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -141,6 +144,12 @@ class SearchViewController: UIViewController {
         saved.price = selectedBusiness!.price
         saved.reviews = Int32(selectedBusiness!.reviews)
         saved.categories = selectedBusiness!.categories
+        saved.setTerm = cLabel
+        saved.latitude = selectedBusiness!.latitude
+        saved.longitude = selectedBusiness!.longitude
+        saved.city = selectedBusiness!.city
+        saved.state = selectedBusiness!.state
+        saved.date = Date()
         CoreDataHelper.saveBusiness()
         print(saved)
     }

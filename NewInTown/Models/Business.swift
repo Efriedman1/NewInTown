@@ -25,7 +25,8 @@ struct BusinessModel: Codable {
     //var categoriesCount: Int
     var categories: String
     var url: String
-    
+    var city: String
+    var state: String
     
     init(json: JSON) {
         self.name = json["name"].stringValue
@@ -41,6 +42,8 @@ struct BusinessModel: Codable {
         self.categories = json["categories"][0]["title"].stringValue
        // self.categoriesCount = json["categories"].count
         self.url = json["url"].stringValue
+        self.city = json["location"]["city"].stringValue
+        self.state = json["location"]["state"].stringValue
     }
     
     

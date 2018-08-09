@@ -88,8 +88,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = categoryImages[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        table.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.5)
-        cell.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.5)
+        table.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
+        cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.988235291, alpha: 1.5)
         return cell
     }
     

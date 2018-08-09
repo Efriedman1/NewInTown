@@ -19,9 +19,9 @@ class RecentTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var categories: UILabel!
-    @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var reviews: UILabel!
-    @IBOutlet weak var starRating: UIImageView!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -13,6 +13,8 @@
 		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
@@ -23,21 +25,21 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Pods-NewInTown.xcscheme</key>
+		<key>Pods-NewInTownTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>Pods-NewInTownTests.xcscheme</key>
+		<key>Pods-NewInTownUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>Pods-NewInTownUITests.xcscheme</key>
+		<key>ReverseExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -49,7 +51,14 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>6</integer>
+		</dict>
+		<key>TouchVisualizer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
