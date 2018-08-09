@@ -24,8 +24,6 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
     var latitude: CLLocationDegrees = 0.0
     var longitude: CLLocationDegrees = 0.0
     var mapLabel = String()
-    //cell.backgroundColor = UIColor(red: 0.98823529, green: 0.98823529, blue: 0.98823529, alpha: 1.5)
-
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var backBttn: UIBarButtonItem!
@@ -47,7 +45,7 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
 //        table.contentOffset.y = oldOffsetY + (newContentHeight - oldContentHeight)
 //        let lastIndex = NSIndexPath(row: saved.count - 1, section: 0)
 //        table.scrollToRow(at: lastIndex as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
-        table.rowHeight = 90
+        table.rowHeight = 110
         DispatchQueue.main.async {
         }
     }

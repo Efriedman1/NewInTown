@@ -41,31 +41,28 @@ class SearchViewController: UIViewController {
     var counter = 0
     var previousBusinesses: [BusinessModel] = []
     
-    //Storing array of searched businesses
     var saved: SavedSearch?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapsButton.layer.cornerRadius = 10
         mapsButton.isEnabled = false
-//        if let data = UserDefaults.standard.value(forKey:"saved") as? Data {
-//            let retrievedData = try? PropertyListDecoder().decode(Array<RecentModel>.self, from: data)
-//            print("Data \(String(describing: retrievedData))")
-//        }
         navBar.title = "\(cLabel)"
         tableView.rowHeight = 110
         generateNewListBttn.showsTouchWhenHighlighted = false
         generateNewListBttn.layer.cornerRadius = 10
         //categoryImage.image = cImage
         //categoryLabel.text = cLabel
-        mapsButton.layer.cornerRadius = 10
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        if let businessesFetched = businessesFetched {
-            //print(businessesFetched)
+        if businessesFetched != nil {
+            print(businessesFetched)
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         animateTable()
@@ -79,20 +76,19 @@ class SearchViewController: UIViewController {
     @objc func imageTapped(){
         print("image tapped: \(imageUrl)")
         UIApplication.shared.open(URL(string : imageUrl)!, options: [:], completionHandler: { (status) in
-            
         })
     }
     
-    //GENERATE NEW LIST BUTTON
+    //generate new list button
     @IBAction func generateBttnTapped(_ sender: UIButton) {
         if counter == 7 {
 
-            let alert = UIAlertController(title: "Thats everything for \(categoryLabel!.text!) in your area", message: "Would you like to view another category?", preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            let alert = UIAlertController(title: "Thats everything in your area", message: "Would you like to view another category?", preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Yes, back to list", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
 
-            let no = UIAlertAction(title: "Refresh list", style: .default ) { (action) in
+            let no = UIAlertAction(title: "No, view again", style: .default ) { (action) in
                 self.counter = 0
                 self.businessesFetched?.append(contentsOf: self.previousBusinesses)
                 self.tableView.reloadData()
@@ -113,14 +109,14 @@ class SearchViewController: UIViewController {
         }
     }
     
-    //BACK BUTTON
+    //back button
     @IBAction func backBttnTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "unwindToVC1", sender: self)
         print([SavedSearch]())
         
     }
 
-    //SHOW IN MAPS BUTTON
+    //show in maps button
     @IBAction func mapsButtonTapped(_ sender: UIButton) {
         
         let regionDistance: CLLocationDistance = 1000;
@@ -137,6 +133,7 @@ class SearchViewController: UIViewController {
  
     }
     
+    //core data function
     func saveToCoreData(){
         let saved = CoreDataHelper.newBusiness()
         saved.name = selectedBusiness!.name
@@ -154,7 +151,7 @@ class SearchViewController: UIViewController {
         print(saved)
     }
     
-    
+    //table animation
     func animateTable() {
         let cells = tableView.visibleCells
         
@@ -226,19 +223,14 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
         guard let business = businessesFetched?[indexPath.row] else {return}
         let currentCell = tableView.cellForRow(at: indexPath) as! BusinessTableViewCell
         self.selectedBusiness = businessesFetched?[indexPath.row]
-        //currentCell.layer.borderColor = UIColor(red: 0.83529412, green: 0.22745098, blue: 0.23921569, alpha: 1.5).cgColor
-        //currentCell.layer.backgroundColor = UIColor.white.cgColor
-        //currentCell.layer.borderWidth = 3
-        //currentCell.setNeedsLayout()
-        print("selected business: \(String(describing: selectedBusiness))")
+        //print("selected business: \(String(describing: selectedBusiness))")
         latitude = business.latitude
         longitude = business.longitude
         mapLabel = business.name
         imageUrl = business.url
-        //print("****Business categories count:\(business.categoriesCount)****")
-        //print("****Selected Business categories:\(business.categories)****")
-        //print("*+*lat: \(latitude)*+*long: \(longitude)*+*")
+      
     }
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
        
     }
@@ -259,6 +251,5 @@ extension SearchViewController: BusinessTableViewCellDelegate, UITableViewDelega
         }
         return 0
     }
-    
 }
 
