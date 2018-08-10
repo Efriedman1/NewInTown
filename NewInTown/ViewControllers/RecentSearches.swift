@@ -15,6 +15,7 @@ class RecentSearchesViewController: UIViewController, UITableViewDelegate, UITab
     
     var saved = [SavedSearch](){
         didSet {
+            saved = saved.reversed()
             table.reloadData()
         }
     }
