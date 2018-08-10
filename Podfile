@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'NewInTown' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -8,11 +8,9 @@ target 'NewInTown' do
 
   # Pods for NewInTown
 
-    pod 'Alamofire', '~> 4.7'
-    pod 'SwiftyJSON', '~> 4.0'
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
     pod 'NVActivityIndicatorView'
-    pod 'ReverseExtension'
-    pod 'TouchVisualizer'
     
   target 'NewInTownTests' do
     inherit! :search_paths

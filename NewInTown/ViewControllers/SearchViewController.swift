@@ -59,7 +59,7 @@ class SearchViewController: UIViewController {
             self.tableView.reloadData()
         }
         if businessesFetched != nil {
-            print(businessesFetched)
+            //print(businessesFetched)
         }
     }
     

@@ -18,8 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let categoryImages: [UIImage] = [#imageLiteral(resourceName: "food"),#imageLiteral(resourceName: "entertainment"),#imageLiteral(resourceName: "gym"),#imageLiteral(resourceName: "coffee"),#imageLiteral(resourceName: "museum"),#imageLiteral(resourceName: "shopping"),#imageLiteral(resourceName: "tree")]
     
     let locationManager = CLLocationManager()
-    var myLongitude: CLLocationDegrees?
-    var myLatitude: CLLocationDegrees?
+    var myLongitude: CLLocationDegrees = 0.0
+    var myLatitude: CLLocationDegrees = 0.0
     var setTerm: String?
     var categoryLabel = String()
     var categoryImage = UIImage()
@@ -45,7 +45,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table?.allowsMultipleSelection = false
         table.dataSource = self
         table.delegate = self
-        table.isScrollEnabled = false
+        table.isScrollEnabled = true
+        table.rowHeight = table.frame.height/7
         
         searchButton.layer.cornerRadius = 10
         
@@ -84,7 +85,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        self.table.rowHeight = 50
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = categoryImages[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.none
@@ -143,7 +143,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func getBiz(sender : UIButton) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)
-        sendBusinessRequest(setTerm: setTerm!, latitude: myLatitude!, longitude: myLongitude!) { businesses in
+        sendBusinessRequest(setTerm: setTerm!, latitude: myLatitude, longitude: myLongitude) { businesses in
             if let businesses = businesses {
               
                 self.businessesFetched = businesses

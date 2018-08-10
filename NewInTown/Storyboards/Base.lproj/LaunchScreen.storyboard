@@ -21,16 +21,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launcgBG" translatesAutoresizingMaskIntoConstraints="NO" id="laX-tB-GTq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconNITW" translatesAutoresizingMaskIntoConstraints="NO" id="V8H-Yz-g7K">
-                                <rect key="frame" x="149" y="288" width="77" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconNITW" translatesAutoresizingMaskIntoConstraints="NO" id="V8H-Yz-g7K">
+                                <rect key="frame" x="137.5" y="277" width="100" height="112"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.83529411764705885" green="0.22745098039215686" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="laX-tB-GTq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="P60-Fc-SEa"/>
                             <constraint firstAttribute="bottom" secondItem="laX-tB-GTq" secondAttribute="bottom" id="QbC-hW-865"/>
+                            <constraint firstItem="V8H-Yz-g7K" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Xr7-WQ-K9Z"/>
                             <constraint firstAttribute="trailing" secondItem="laX-tB-GTq" secondAttribute="trailing" id="dNs-5w-Z6L"/>
+                            <constraint firstItem="V8H-Yz-g7K" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fcm-Yp-fnW"/>
                             <constraint firstItem="laX-tB-GTq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="rzw-es-VYt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
